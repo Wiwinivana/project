@@ -11,6 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' 
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="jenis-kelamin-update">
+	 <div class="box box-primary">
+            <div class="box-header with-border">
+
 
     <h1><?= Html::encode($this->title) ?></h1>
 

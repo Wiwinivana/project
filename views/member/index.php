@@ -7,10 +7,12 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MemberSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Members';
+$this->title = 'Member';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="member-index">
+    <div class="box box-primary">
+            <div class="box-header with-border">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -22,9 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+            'class' => 'yii\grid\SerialColumn',
+            'header' =>'No',
+            ],
 
-            'id',
             'nama',
             'username',
             'password',

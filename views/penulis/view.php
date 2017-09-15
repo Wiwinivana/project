@@ -12,6 +12,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Penulis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="penulis-view">
+     <div class="box box-primary">
+            <div class="box-header with-border">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

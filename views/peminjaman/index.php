@@ -11,12 +11,15 @@ $this->title = 'Peminjaman';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="peminjaman-index">
+    <div class="box box-primary">
+            <div class="box-header with-border">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Tambah Peminjaman', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-plus"></i>Tambah Peminjaman', ['create'], ['class' => 'btn btn-success']) ?>
+         <?= Html::a('<i class="fa fa-print"></i> Export Excel Peminjaman Buku', Yii::$app->request->url.'&export=1', ['class' => 'btn btn-success btn-flat']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\Helpers\ArrayHelper;
 use app\models\Member;
 
 

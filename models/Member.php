@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\Helpers\ArrayHelper;
+use app\models\Peminjaman;
 
 /**
  * This is the model class for table "user".
@@ -67,5 +68,19 @@ class Member extends \yii\db\ActiveRecord
     public static function getList()
     {
         return ArrayHelper::map(Member::find()->all(),'id','nama');
+    }
+    public static function getCount()
+    {
+        return self::find()->count();
+    }
+    public static function getPeminjaman()
+    {
+        $chart = null;
+
+        foreach(Peminjaman::find()->all as $data)
+        {
+            $chart .='{"label":"'.$data->nama.'","value":"'.$data->getCount().'"},';
+        }
+        return $chart;
     }
 }

@@ -1,17 +1,35 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'basic',
+    'id' => 'Perpustakaan',
+    'name' => 'Perpustakaan',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'aliases' => [
-        '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
-    ],
+    'timeZone' => 'Asia/Jakarta',
     'components' => [
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@app/themes/adminlte'
+             ],
+         ],
+    ],
+
+    'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => '6LcsmysUAAAAAA-no9ZigXCqF-769IlTYdjCDkBr',
+            'secret' => '6LcsmysUAAAAANifDc5tKASe4WJEyp75zGYrrYtb',
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'thousandSeparator' => '.',
+            'decimalSeparator' => ',',
+            'currencyCode' => 'Rp'
+        ],
+
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'O5JpEUzUaBpUS67fOTn3V82kHjpU1de7',
@@ -42,7 +60,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => require(__DIR__. '/db.php'),
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -51,6 +69,12 @@ $config = [
             ],
         ],
         */
+     ],
+        'modules' => [
+       'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
+
     ],
     'params' => $params,
 ];

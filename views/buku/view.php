@@ -11,6 +11,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Buku', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="buku-view">
+     <div class="box box-primary">
+            <div class="box-header with-border">
+
 
     <h1>Detail Buku</h1>
 

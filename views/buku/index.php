@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\BukuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -11,12 +11,15 @@ $this->title = 'Daftar Buku';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="buku-index">
+    <div class="box box-primary">
+            <div class="box-header with-border">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i>Tambah Buku', ['create'], ['class' => 'btn btn-success']) ?>
+         <?= Html::a('<i class="fa fa-print"></i> Export Data Buku', ['Wiwin/export'], ['class' => 'btn btn-success btn-flat']) ?>
     </p>
 
     <?= GridView::widget([
