@@ -38,7 +38,7 @@ class JenisKelamin extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nama' => 'Nama',
+            'nama' => 'Jenis Kelamin',
         ];
     }
     public static function getList()

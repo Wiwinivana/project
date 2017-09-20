@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 //app itu 
 use app\models\Jenis;
@@ -13,9 +13,21 @@ use app\models\Penulis;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="buku-form">
+<?php $form = ActiveForm::begin([
+    'layout'=>'horizontal',
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
+    'fieldConfig' => [
+        'horizontalCssClasses' => [
+            'label' => 'col-sm-5',
+            'wrapper' => 'col-sm-7',
+            'error' => '',
+            'hint' => '',
+        ],
+    ]
+]); ?>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
@@ -39,9 +51,15 @@ use app\models\Penulis;
     ]); ?>
     <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
+   
+    <div class="box-footer">
+        <div class="col-sm-offset-2 col-sm-3">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
+    </div>
+    </div>
+    </div>
+</div>  
 
     <?php ActiveForm::end(); ?>
 

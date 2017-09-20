@@ -4,15 +4,16 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Penerbit */
+/* @var $model app\models\Member */
 
 $this->title = $model->nama;
-$this->params['breadcrumbs'][] = ['label' => 'Penerbits', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Members', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="penerbit-view">
-     <div class="box box-primary">
+<div class="member-view">
+    <div class="box box-primary">
             <div class="box-header with-border">
+   
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i>Sunting', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-trash"></i>Hapus', ['delete', 'id' => $model->id], [
@@ -29,9 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'nama',
-            'alamat',
-            'lat',
-            'lng',
+            'username',
+            'password',
+            'authKey',
+            'accessToken',
+            'role',
         ],
     ]) ?>
 

@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
      <div class="box box-primary">
             <div class="box-header with-border">
 
-
     <h1>Detail Buku</h1>
 
     <p>

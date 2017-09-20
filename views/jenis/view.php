@@ -14,8 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="jenis-view">
      <div class="box box-primary">
             <div class="box-header with-border">
-
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>

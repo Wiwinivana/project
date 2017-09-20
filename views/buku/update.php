@@ -11,12 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->nama, 'url' => ['view', 'id
 $this->params['breadcrumbs'][] = 'Sunting';
 ?>
 <div class="buku-update">
-	 <div class="box box-primary">
-            <div class="box-header with-border">
-
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+         
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

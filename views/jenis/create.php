@@ -11,12 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Jenis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jenis-create">
-	 <div class="box box-primary">
-            <div class="box-header with-border">
-
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+	
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

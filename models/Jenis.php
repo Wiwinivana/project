@@ -38,7 +38,7 @@ class Jenis extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nama' => 'Nama',
+            'nama' => 'Jenis Buku',
         ];
     }
     
