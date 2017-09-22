@@ -15,11 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box-header with-border">
 
     
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i>Tambah Buku', ['create'], ['class' => 'btn btn-success']) ?>
          <?= Html::a('<i class="fa fa-print"></i> Export Data Buku', ['Wiwin/export'], ['class' => 'btn btn-success btn-flat']) ?>
+         <?= Html::a('<i class="glyphicon glyphicon-search"></i>Cari Buku', ['pencarian'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

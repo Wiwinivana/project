@@ -92,9 +92,25 @@ class Buku extends \yii\db\ActiveRecord
         return ArrayHelper::map(Buku::find()->all(),'id','nama');
     }
 
-     public static function getCount()
+    public static function getCount()
     {
         return self::find()->count();
+    }
+    public static function getGrafikPerPenulis()
+    {
+        $chart = null;
+
+        foreach(Penulis::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafik().'"},';
+        }
+        return $chart;
+    }
+    public function getCountGrafikBuku()
+    {
+        return Peminjaman::find()
+        ->andWhere(['id_buku' => $this->id])
+        ->count();
     }
 }
 

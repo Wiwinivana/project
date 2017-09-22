@@ -12,6 +12,7 @@ use app\models\Buku;
  */
 class BukuSearch extends Buku
 {
+    public $globalSearch;
     /**
      * @inheritdoc
      */

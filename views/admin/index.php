@@ -83,7 +83,7 @@ print Url::to(['site/index']);
                 <h3 class="box-title">Grafik Peminjaman Buku</h3>
             </div>
             <div class="box-body">
-               
+            <?= $this->render('_grafikPeminjaman'); ?>
             </div>
         </div>
     </div>
@@ -94,8 +94,8 @@ print Url::to(['site/index']);
                 <h3 class="box-title">Grafik Penulis</h3>
             </div>
             <div class="box-body">
-               
+            <?= $this->render('_grafikPenulis'); ?>
             </div>
         </div>
     </div>
-</div>
+

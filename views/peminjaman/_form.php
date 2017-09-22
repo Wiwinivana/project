@@ -36,32 +36,23 @@ use kartik\date\DatePicker;
     	'options' => ['placeholder' => '--Pilih Jenis Buku--'],
     ]); ?>
 
-    <?= $form->field($model, 'id_user')->widget(Select2::classname(), [
-
-        'data' => Member::getList(),
-        'options' => ['placeholder' => '-- Harus Otomatis--'],
-    ]); ?>  
-
-    <?= $form->field($model, 'waktu_dipinjam')->widget(
-    DatePicker:: className(),[
-    'model' => $model,
-    'attribute' => 'date'
-    'template' => '{addon}{input}',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'yyyy-mm-dd',
+    <?= $form->field($model, 'waktu_dipinjam')->widget(DatePicker::className(), [
+            'removeButton' => false,
+            'options' => ['placeholder' => 'Tanggal'],
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy-mm-dd'
             ]
-    ]); ?>
+        ]) ?>
 
-    <?= $form->field($model, 'waktu_pengembalian')->widget(DatePicker::className(),[
-    'model' => $model,
-    'attribute' => 'date'
-    'template' => '{addon}{input}',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'yyyy-mm-dd',
+    <?= $form->field($model, 'waktu_pengembalian')->widget(DatePicker::className(), [
+            'removeButton' => false,
+            'options' => ['placeholder' => 'Tanggal'],
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy-mm-dd'
             ]
-    ]); ?>
+        ]) ?>
     
 
     <div class="form-group">

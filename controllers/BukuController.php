@@ -120,6 +120,15 @@ class BukuController extends Controller
         return $this->redirect(['index']);
     }
 
+
+    public function actionPencarian()
+    {
+
+        return $this->render('pencarian');
+    }
+
+
+
     /**
      * Finds the Buku model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

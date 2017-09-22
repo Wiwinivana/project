@@ -36,10 +36,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'id_buku',
                 'value' => function($data){
                     //data=variabel, ->nama relasi,->nama field
-                    return $data->buku->nama;
+                    return $data->idBuku->nama;
                 },
             ],
-            'id_user',
+            [      
+                'attribute' => 'id_user',
+                'value' => function($data){
+                    return $data->idUser->nama;
+                },
+            ],
             'waktu_dipinjam',
             'waktu_pengembalian',
         ],

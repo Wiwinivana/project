@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\Helpers\ArrayHelper;
+use app\models\Buku;
 
 
 /**
@@ -70,5 +71,10 @@ class Penulis extends \yii\db\ActiveRecord
     {
         return self::find()->count();
     }
-   
+    public function getCountGrafik()
+    {
+        return Buku::find()
+        ->andWhere(['id_penulis' => $this->id])
+        ->Count();
+    }
 }

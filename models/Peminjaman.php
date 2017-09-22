@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\Helpers\ArrayHelper;
-use app\models\Member;
+use app\models\User;
 
 
 /**
@@ -35,8 +35,8 @@ class Peminjaman extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_user', 'waktu_dipinjam', 'waktu_pengembalian'], 'required'],
-            [['waktu_dipinjam', 'waktu_pengembalian','id_buku'], 'safe'],
+            [['waktu_dipinjam', 'waktu_pengembalian'], 'required'],
+            [['waktu_dipinjam', 'waktu_pengembalian','id_buku','id_user'], 'safe'],
         ];
     }
 
@@ -76,5 +76,25 @@ class Peminjaman extends \yii\db\ActiveRecord
         }else{
             return null;
         }
+    }
+
+    public static function getGrafikPerBuku()
+    {
+        $chart = null;
+
+        foreach(Buku::find()->all() as $data)
+        {
+            $chart .= '{"label":"'.$data->nama.'","value":"'.$data->getCountGrafikBuku().'"},';
+        }
+        return $chart;
+    }
+
+    public function beforeSave($insert)
+    {
+        if ($insert) {
+            $this->id_user = Yii::$app->user->identity->id;
+        }
+
+        return true;
     }
 }
