@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="box-header with-border">
 
     
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-plus"></i>Tambah Buku', ['create'], ['class' => 'btn btn-success']) ?>

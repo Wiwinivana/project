@@ -19,8 +19,8 @@ class BukuSearch extends Buku
     public function rules()
     {
         return [
-            [['id', 'id_jenis', 'id_penulis'], 'integer'],
-            [['nama', 'cover'], 'safe'],
+            [['id'], 'integer'],
+            [['nama', 'globalSearch', 'id_jenis', 'id_penulis', 'cover'], 'safe'],
         ];
     }
 
@@ -59,14 +59,10 @@ class BukuSearch extends Buku
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'id_jenis' => $this->id_jenis,
-            'id_penulis' => $this->id_penulis,
-        ]);
+      
 
-        $query->andFilterWhere(['like', 'nama', $this->nama])
-            ->andFilterWhere(['like', 'cover', $this->cover]);
+        $query->orFilterWhere(['like', 'nama', $this->globalSearch])
+            ->orFilterWhere(['like', 'cover', $this->globalSearch]);
 
         return $dataProvider;
     }
