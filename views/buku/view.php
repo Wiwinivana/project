@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('<i class="glyphicon glyphicon-pencil"></i>Sunting Buku', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('<i class="glyphicon glyphicon-list"></i>Daftar Buku', ['buku/index', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-file"></i> Export PDF', ['view-export-pdf', 'id' => $model->id], ['target' => '_blank', 'class' => 'btn btn-success']) ?>
         
     </p>
 
