@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->jenis->nama;
                 },
             ],
-           'cover',
+                  
             
             [
                 'attribute' => 'id_penulis',
@@ -44,6 +44,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->penulis->nama;
                 },
              ],
+
+            [
+                'attribute' => 'file',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->getCover(['style'=>'width:100px']);
+                },
+            ],
+ 
             ],
     ]); ?>
 

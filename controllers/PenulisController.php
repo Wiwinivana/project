@@ -8,6 +8,7 @@ use app\models\PenulisSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * PenulisController implements the CRUD actions for Penulis model.
@@ -64,14 +65,36 @@ class PenulisController extends Controller
     public function actionCreate()
     {
         $model = new Penulis();
+       
+        if ($model->load(Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            /*FUNGSI UNTUK UPLOAD FOTO*/
+            $gambar = UploadedFile::getInstance($model, 'gambar');
+
+            /*NAMA FOTO YG AKAN DISIMPAN DI DATABASE*/
+            if($gambar !== null) {
+                $model->gambar = $gambar->baseName . Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s')) . '.' . $gambar->extension;
+            }            
+
+            if($model->save()) {
+
+                /*UPLOAD FOTO KE FOLDER WEB/UPLOADS KETIKA SELESAI MENYIMPAN DATA*/
+                if($gambar!==null) {
+                    $path = Yii::getAlias('@app').'/web/uploads/';
+                    $gambar->saveAs($path.$model->gambar, false);
+                }                
+                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
+
     }
 
     /**
@@ -84,13 +107,27 @@ class PenulisController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $gambar_lama = $model->gambar;
+        if ($model->load(Yii::$app->request->post()) ) {
+            $gambar = UploadedFile::getInstance($model,'gambar');
+             if($gambar !== null){
+                $model->gambar = $gambar->baseName . Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s')) . '.' . $gambar->extension;
+            } else {
+                $model->gambar = $gambar_lama;
+            }
+            if($model->save()) {
+                    if ($gambar!==null) {
+                        $path = Yii::getAlias('@app').'/web/uploads/';
+                        $gambar->saveAs($path.$model->gambar, false);
+                     }
+            Yii::$app->session->setFlash('success','Data berhasil disimpan.');
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            } 
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+        }
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }
     }
 
     /**
@@ -121,4 +158,6 @@ class PenulisController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+                           
 }

@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
 
-            'cover',
+          
 
             //cara kedua
             [
@@ -51,6 +51,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data){
                     //data=variabel, ->nama relasi,->nama field
                     return $data->penulis->nama;
+                },
+            ],
+
+              [
+                'attribute' => 'cover',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->getCover(['style'=>'width:100px']);
                 },
             ],
 

@@ -47,7 +47,7 @@ use app\models\JenisKelamin;
 
     <?= $form->field($model, 'lng')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'gambar')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'gambar')->fileInput(); ?>
 
     <div class="form-group">
      <div class="col-sm-offset-2 col-sm-3">

@@ -41,8 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'lat',
             'lng',
             // 'gambar',
+            [
+                'attribute' => 'gambar',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->getGambar(['style'=>'width:100px']);
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 </div>

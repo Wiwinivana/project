@@ -2,6 +2,7 @@
 
 namespace app\models;
 use app\models\User;
+use app\models\Peminjaman;
 use Yii;
 
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
@@ -17,7 +18,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['nama', 'username', 'password', 'role'], 'required'],
             [['role'], 'integer'],
             [['nama', 'username', 'password'], 'string', 'max' => 255],
-            [['nama', 'username', 'password', 'authKey', 'accessToken', 'role'], 'required'],
+            [['nama', 'username', 'password', 'role'], 'required'],
             [['role'], 'integer'],
             [['nama', 'username', 'password', 'authKey', 'accessToken'], 'string', 'max' => 255],
         ];
@@ -116,5 +117,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public static function getCount()
     {
         return self::find()->count();
+    }
+
+    public function getPeminjamen()
+    {
+        return $this->hasMany(Peminjaman::className(), ['id_user' => 'id']);
     }
 }

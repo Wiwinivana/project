@@ -10,6 +10,13 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 ?>
 
+<div  class="login-pages">
+            <div class="login-logo">
+              <p style="font-weight: bold; color: #F5C316">Aplikasi Perpustakaan</p>
+              <p class="txt-l" style="font-weight: bold">Dinas Pendidikan Kota Bandung</p>
+
+            </div>
+
 <div class="login-box">
     <div class="login-box-body">
     <p class="login-box-msg">Silahkan login terlebih dahulu</p>

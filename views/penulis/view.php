@@ -42,7 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'alamat:ntext',
             'lat',
             'lng',
-            'gambar',
+            [
+                'attribute' => 'gambar',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->getGambar(['style'=>'width:100px']);
+                },
+            ],
         ],
     ]) ?>
 

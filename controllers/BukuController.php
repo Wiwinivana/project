@@ -64,31 +64,31 @@ class BukuController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+     public function actionCreate()
     {
         $model = new Buku();
-
-        if ($model->load(Yii::$app->request->post())) { /*&& $model->save()) {*/
-
-            //get the instance of the upload file
-            $imageName = $model->nama;
-            $model->file = UploadedFile::getInstance($model,'file');
-            $model->file->saveAs( 'uploads/'.$imageName.'.'.$model->file->extension );
-
-            // save the path in the db column
-            $model->cover = 'uploads/'.$imageName.'.'.$model->file->extension;
+        if ($model->load(Yii::$app->request->post()) ) {
             
-            $model->save();
-
-
+            $cover = UploadedFile::getInstance($model,'cover');
+            if($cover !== null){
+                $model->cover = $cover->baseName . Yii::$app->formatter->asTimestamp(date('Y')) . '.' . $cover->extension;
+                /*print $cover->extension;
+                die;*/
+            }
+            if($model->save()) {
+                    if ($cover!==null) {
+                        $path = Yii::getAlias('@app').'/web/uploads/';
+                        $cover->saveAs($path.$model->cover, false);
+                }
+            Yii::$app->session->setFlash('success','Data berhasil disimpan.');
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            }
+             Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+        } 
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
     }
-
     /**
      * Updates an existing Buku model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -98,14 +98,28 @@ class BukuController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $foto_lama = $model->cover;
+        if ($model->load(Yii::$app->request->post()) ) {
+            $cover = UploadedFile::getInstance($model,'cover');
+             if($cover !== null){
+                $model->cover = $cover->baseName . Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s')) . '.' . $cover->extension;
+            } else {
+                $model->cover = $foto_lama;
+            }
+            if($model->save()) {
+                    if ($cover!==null) {
+                        $path = Yii::getAlias('@app').'/web/uploads/';
+                        $cover->saveAs($path.$model->cover, false);
+                     }
+            Yii::$app->session->setFlash('success','Data berhasil disimpan.');
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            } 
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+        }
             return $this->render('update', [
                 'model' => $model,
             ]);
-        }
+        
     }
 
     /**

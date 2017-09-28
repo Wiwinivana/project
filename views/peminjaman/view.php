@@ -6,9 +6,9 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Peminjaman */
 
-$this->title = $model->id;
+/*$this->title = $model->id;*/
 $this->params['breadcrumbs'][] = ['label' => 'Peminjamen', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+/*$this->params['breadcrumbs'][] = $this->title;*/
 ?>
 <div class="peminjaman-view">
      <div class="box box-primary">
@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-file"></i> Export PDF', ['view-export-pdf', 'id' => $model->id], ['target' => '_blank', 'class' => 'btn btn-success']) ?>
     </p>
 
     <?= DetailView::widget([

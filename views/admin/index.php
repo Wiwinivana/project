@@ -69,7 +69,7 @@ print Url::to(['site/index']);
                     <h3><?= Member::getCount(); ?></h3>
                     <span style="font-size: 30px"></span>
                 </div>
-                <a class="small-box-footer" href="<?= Url::to(['member/index']); ?>">Klik disini untuk melihat Member</a>
+                <a class="small-box-footer" href="<?= Url::to(['user/index']); ?>">Klik disini untuk melihat Member</a>
                  </div>
              </div>
         </div>

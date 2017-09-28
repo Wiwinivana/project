@@ -12,15 +12,14 @@ use app\models\Penulis;
 /* @var $model app\models\Buku */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
 <?php $form = ActiveForm::begin([
     'layout'=>'horizontal',
     'enableAjaxValidation'=>false,
     'enableClientValidation'=>false,
     'fieldConfig' => [
         'horizontalCssClasses' => [
-            'label' => 'col-sm-5',
-            'wrapper' => 'col-sm-7',
+            'label' => 'col-sm-2',
+            'wrapper' => 'col-sm-4',
             'error' => '',
             'hint' => '',
         ],
@@ -49,7 +48,7 @@ use app\models\Penulis;
     'allowClear' => true
     ],
     ]); ?>
-    <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cover')->fileInput(['maxlength' => true]) ?>
 
    
     <div class="box-footer">

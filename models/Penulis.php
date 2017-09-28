@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\Helpers\ArrayHelper;
 use app\models\Buku;
+use yii\helpers\Html;
 
 
 /**
@@ -34,10 +35,10 @@ class Penulis extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nama', 'id_jenis_kelamin', 'lat', 'lng', 'gambar'], 'required'],
+            [['nama', 'id_jenis_kelamin', 'lat', 'lng'], 'required'],
             [['id_jenis_kelamin'], 'integer'],
             [['alamat'], 'string'],
-            [['nama'], 'string', 'max' => 255],
+            [['nama', 'gambar'], 'string', 'max' => 255],
             [['lat', 'lng'], 'string', 'max' => 20],
             [['gambar'], 'string', 'max' => 50],
             [['id_jenis_kelamin'], 'exist', 'skipOnError' => true, 'targetClass' => JenisKelamin::className(), 'targetAttribute' => ['id_jenis_kelamin' => 'id']],
@@ -77,4 +78,14 @@ class Penulis extends \yii\db\ActiveRecord
         ->andWhere(['id_penulis' => $this->id])
         ->Count();
     }
+
+    public function getGambar($htmlOptions=[])
+    {
+        //Jika file ada dalam direktori
+        if($this->gambar == null && !file_exists('@web/uploads/'.$this->gambar)){
+            return Html::img('@web/images/avatar.jpg',$htmlOptions);
+        } else {
+            return Html::img('@web/uploads/'. $this->gambar,$htmlOptions);
+        }
+    } 
 }

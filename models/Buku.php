@@ -2,8 +2,11 @@
 
 namespace app\models;
 
+
 use Yii;
 use yii\Helpers\ArrayHelper;
+use yii\helpers\Html;
+
 
 
 
@@ -33,10 +36,11 @@ class Buku extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_jenis', 'id_penulis'], 'integer'], 
-            [['file'],'file'],
-            [['cover', 'id_penulis'], 'required'],
+            [['id_jenis', 'id_penulis'], 'integer'],
+            [['id_jenis'], 'string', 'max' => 33],
+            [['id_penulis'], 'required'],
             [['nama', 'cover'], 'string', 'max' => 255],
+            [['id_penulis'], 'string', 'max' =>40],
             [['id_jenis'], 'exist', 'skipOnError' => true, 'targetClass' => Jenis::className(), 'targetAttribute' => ['id_jenis' => 'id']],
             [['id_penulis'], 'exist', 'skipOnError' => true, 'targetClass' => Penulis::className(), 'targetAttribute' => ['id_penulis' => 'id']],
         ];
@@ -51,7 +55,7 @@ class Buku extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nama' => 'Nama',
             'id_jenis' => 'Jenis',
-            'file' => 'Cover',
+            'cover' => 'Cover',
             'id_penulis' => 'Penulis',
         ];
     }
@@ -111,6 +115,16 @@ class Buku extends \yii\db\ActiveRecord
         return Peminjaman::find()
         ->andWhere(['id_buku' => $this->id])
         ->count();
+    }
+
+    public function getCover($htmlOptions=[])
+    {
+        //jika file ada dalam direktori
+        if($this->cover == null && ! file_exists('@web/uploads/'.$this->cover)){
+            return Html::img('@web/images/buku.jpg',$htmlOptions);
+        } else {
+            return Html::img('@web/uploads/'. $this->cover,$htmlOptions);
+        }
     }
 }
 
